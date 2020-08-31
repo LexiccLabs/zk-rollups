@@ -1,0 +1,42 @@
+{
+  "name": "prover",
+  "version": "1.0.0",
+  "description": "Proving circuits for simple-zk-rollups",
+  "license": "MIT",
+  "author": "Kendrick Tan <kendricktan0814@gmail.com>",
+  "dependencies": {
+    "circom": "^0.0.35",
+    "circomlib": "^0.0.20",
+    "ethers": "^4.0.43",
+    "snarkjs": "^0.1.20",
+    "wasmbuilder": "^0.0.8",
+    "websnark": "^0.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.9.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.8",
+    "jest": "^24.9.0",
+    "path": "^0.12.7",
+    "ts-jest": "^24.3.0",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-jest": "^0.0.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "tsutils": "^3.17.1",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "circuit:compile": "yarn circuit:tx:compile && yarn circuit:withdraw:compile",
+    "circuit:setup": "yarn circuit:tx:setup && yarn circuit:withdraw:setup",
+    "circuit:generateverifier": "yarn circuit:tx:generateverifier && yarn circuit:withdraw:generateverifier",
+    "circuit:withdraw:compile": "mkdir -p build && circom circuits/withdraw.circom -o build/withdraw.json",
+    "circuit:withdraw:setup": "snarkjs setup --protocol groth -c build/withdraw.json --pk build/withdrawProvingKey.json --vk build/withdrawVerifyingKey.json",
+    "circuit:withdraw:generateverifier": "snarkjs generateverifier --pk build/withdrawProvingKey.json --vk build/withdrawVerifyingKey.json -v ../contracts/contracts/WithdrawVerifier.sol && sed -i.bak -e \"s/Verifier/WithdrawVerifier/g\" -- ../contracts/contracts/WithdrawVerifier.sol && rm -- ../contracts/contracts/WithdrawVerifier.sol.bak",
+    "circuit:tx:compile": "mkdir -p build && circom circuits/tx.circom -o build/tx.json",
+    "circuit:tx:setup": "snarkjs setup --protocol groth -c build/tx.json --pk build/txProvingKey.json --vk build/txVerifyingKey.json",
+    "circuit:tx:generateverifier": "snarkjs generateverifier --pk build/txProvingKey.json --vk build/txVerifyingKey.json -v ../contracts/contracts/TxVerifier.sol && sed -i.bak -e \"s/Verifier/TxVerifier/g\" -- ../contracts/contracts/TxVerifier.sol && rm -- ../contracts/contracts/TxVerifier.sol.bak",
+    "test": "jest --no-cache --testTimeout 60000",
+    "test:watch": "jest --watch"
+  }
+}
