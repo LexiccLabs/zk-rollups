@@ -34,8 +34,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
-  "author": "Kendrick Tan <kendricktan0814@gmail.com>",
-  "license": "MIT",
+  "author": "Elliot Stefansson <stealthy-ai@protonmail.com>",
+  "license": "GPLv3",
   "dependencies": {
     "body-parser": "^1.19.0",
     "circom": "0.0.35",

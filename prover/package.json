@@ -2,8 +2,8 @@
   "name": "prover",
   "version": "1.0.0",
   "description": "Proving circuits for simple-zk-rollups",
-  "license": "MIT",
-  "author": "Kendrick Tan <kendricktan0814@gmail.com>",
+  "license": "GPLv3",
+  "author": "Elliot Stefansson <stealthy-ai@protonmail.com>",
   "dependencies": {
     "circom": "^0.0.35",
     "circomlib": "^0.0.20",

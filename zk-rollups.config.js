@@ -25,7 +25,7 @@ module.exports = {
         : process.env.WEB3_PROVIDER_URL,
     privateKey:
       process.env.DEPLOYER_PRIVATE_KEY === undefined
-        ? "0x94a9f52a9ef7933f3865a91766cb5e12d25f62d6aecf1d768508d95526bfee29"
+        ? "0xa979f52a9ef7733f3465fa1766cb5e12d25fa2d6decf1d668508d95526bfee29"
         : process.env.DEPLOYER_PRIVATE_KEY
   },
   redis: {

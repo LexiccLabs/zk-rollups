@@ -2,15 +2,12 @@
  * Hasher object to abstract out hashing logic
  * to be shared between multiple files
  *
- * Copyright (C) 2019 Kendrick Tan <kendricktan0814@gmail.com>
+ * Copyright (C) 2020 Elliot Stefansson <stealthy-ai@protonmail.com>
  *
  * This file is part of simple-zk-rollups
  * Everyone is permitted to copy and distribute verbatim or modified
  * copies of this license document, and changing it is allowed as long
  * as the name is changed.
- *           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- *   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
- * 0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 
 pragma solidity 0.5.11;

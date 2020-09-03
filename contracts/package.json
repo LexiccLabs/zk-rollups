@@ -1,8 +1,8 @@
 {
   "name": "contracts",
   "version": "1.0.0",
-  "license": "MIT",
-  "author": "Kendrick Tan <kendricktan0814@gmail.com>",
+  "license": "GPLv3",
+  "author": "Elliot Stefansson <stealthy-ai@protonmail.com>",
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
     "@truffle/artifactor": "^4.0.44",
