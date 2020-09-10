@@ -8,7 +8,7 @@
 //      ported to solidity 0.5
 //      fixed linter warnings
 //      added requiere error messages
-//
+// Transacion validation in solidity
 pragma solidity ^0.5.0;
 library Pairing {
     struct G1Point {

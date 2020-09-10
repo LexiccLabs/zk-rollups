@@ -2,8 +2,8 @@ include "./processtx.circom";
 
 template BatchProcessTx(batchSize, depth) {
   // params:
-  //          batchSize: Batch size of tx's to process (usually 2**depth)
-  //          depth: depth of the merkle tree
+  //    batchSize: Batch size of tx's to process (usually 2**depth)
+  //    depth: depth of the merkle tree
 
   // Processes a single transaction
   signal output newBalanceTreeRoot;
@@ -11,6 +11,7 @@ template BatchProcessTx(batchSize, depth) {
   // Merkle Root of the current balance tree
   signal input balanceTreeRoot[batchSize];
 
+  // FROM||TO||NONCE||AMOUNT||SIG||
   var TX_DATA_WITH_SIG_LENGTH = 8;
   signal input txData[batchSize][TX_DATA_WITH_SIG_LENGTH];
 
@@ -29,7 +30,7 @@ template BatchProcessTx(batchSize, depth) {
   // Intermediate balance tree root
   // i.e. intermediateBalanceTreeRoot corresponds to the tree root
   //      after txSender has been updated on the tree, but not
-  //      txRecipient
+  //      txRecipient otherwise proofs might fail
   signal input intermediateBalanceTreeRoot[batchSize];
   signal input intermediateBalanceTreePathElements[batchSize][depth];
 

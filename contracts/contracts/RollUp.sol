@@ -1,5 +1,7 @@
 pragma solidity 0.5.11;
 
+// Rollup solidity implementation
+
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./Hasher.sol";

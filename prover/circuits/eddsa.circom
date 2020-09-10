@@ -6,6 +6,8 @@ include "../node_modules/circomlib/circuits/bitify.circom";
 include "../node_modules/circomlib/circuits/escalarmulany.circom";
 include "../node_modules/circomlib/circuits/escalarmulfix.circom";
 
+// EdDSA in-circuit using MiMC Sponge instead of SHA3
+
 include "./hasher.circom";
 
 
@@ -119,13 +121,13 @@ template VerifyEdDSASignature(k) {
   signal private input preimage[k];
 
   signal output valid;
-  
+
   component M = Hasher(k);
   M.key <== 0;
   for (var i = 0; i < k; i++){
     M.in[i] <== preimage[i];
   }
-  
+
   component verifier = EdDSAMiMCSpongeVerifierPatched();
 
   verifier.Ax <== fromX;

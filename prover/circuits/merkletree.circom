@@ -2,6 +2,7 @@ include "./hasher.circom";
 
 // if pathIndex == 0 returns (left = in, right = pathElement)
 // if pathIndex == 1 returns (left = pathElement, right = in)
+
 template PathSelector() {
   signal input in;
   signal input pathElement;

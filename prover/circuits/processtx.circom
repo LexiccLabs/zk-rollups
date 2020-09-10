@@ -17,7 +17,7 @@ template ProcessTx(depth) {
   // Leaf data length in the balance tree is 3
   // [public_key_x, public_key_y, balance, nonce]
   var BALANCE_TREE_LEAF_DATA_LENGTH = 4;
-
+  // To do amounts in wei should be checked against overflow
   /*
     Anatomy of a transaction
     [0] - from
@@ -29,6 +29,7 @@ template ProcessTx(depth) {
     [6] - signature R8Y
     [7] - signature S
     Note: Signature is obtained from public key of 'from' in the merkle tree
+
   */
   var TX_DATA_FROM_IDX = 0;
   var TX_DATA_TO_IDX = 1;
@@ -76,6 +77,7 @@ template ProcessTx(depth) {
   validTxSignature.R8x <== txData[TX_DATA_SIGNATURE_R8X_IDX];
   validTxSignature.R8y <== txData[TX_DATA_SIGNATURE_R8Y_IDX];
   validTxSignature.S <== txData[TX_DATA_SIGNATURE_S_IDX];
+  // validate sign pre-image
   for (var i = 0; i < TX_DATA_WITHOUT_SIG_LENGTH; i++) {
     validTxSignature.preimage[i] <== txData[i];
   }
@@ -99,6 +101,7 @@ template ProcessTx(depth) {
   senderSufficientBalance.in[0] <== txSenderBalance;
   senderSufficientBalance.in[1] <== txData[TX_DATA_AMOUNT_WEI_IDX] + txData[TX_DATA_FEE_WEI_IDX];
   senderSufficientBalance.out === 1;
+
 
   // Step 3. Make sure that 'from' index actually corresponds to
   //         the public key and the balance
@@ -135,6 +138,7 @@ template ProcessTx(depth) {
   }
 
   // Step 4. If the above is valid, create new txSender and txRecipient leaf
+  // make sure that no check has failed till now
   signal newTxSenderBalance;
   newTxSenderBalance <== txSenderBalance - txData[TX_DATA_AMOUNT_WEI_IDX] - txData[TX_DATA_FEE_WEI_IDX];
 
@@ -177,7 +181,7 @@ template ProcessTx(depth) {
     computedIntermediateBalanceTree.pathElements[i] <== txSenderPathElements[i];
     computedIntermediateBalanceTree.pathIndexes[i] <== txSenderPathIndexes.out[i];
   }
-  
+
   // Step 5.2 Make sure computed root is the same as supplied root
   computedIntermediateBalanceTree.root === intermediateBalanceTreeRoot;
 

@@ -2,6 +2,7 @@ include "./hasher.circom";
 include "../node_modules/circomlib/circuits/bitify.circom";
 include "../node_modules/circomlib/circuits/escalarmulany.circom";
 
+// In-circuit ECDH
 
 template Ecdh() {
   // Note: private key
